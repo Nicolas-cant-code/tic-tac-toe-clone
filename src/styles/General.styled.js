@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.columnBased ? "column" : "row")};
   justify-content: center;
   align-items: center;
   height: 80vh;
@@ -13,14 +13,16 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h1`
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) =>
+    props.color ? props.theme.colors[props.color] : props.theme.colors.text};
   font-size: 3rem;
   font-family: "Pacifico", cursive;
   background-color: transparent;
 `;
 
 export const SubTitle = styled.h2`
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) =>
+    props.color ? props.theme.colors[props.color] : props.theme.colors.text};
   font-size: 1.5rem;
   font-weight: 200;
   background-color: transparent;

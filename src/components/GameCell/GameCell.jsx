@@ -6,17 +6,26 @@ import IconX from "../../assets/svgs/x-symbol.svg?react";
 import IconXOutline from "../../assets/svgs/x-symbol-outline.svg?react";
 import IconO from "../../assets/svgs/o-symbol.svg?react";
 import IconOOutline from "../../assets/svgs/o-symbol-outline.svg?react";
+import { ModalContext } from "../../context/ModalContext";
+import RoundOverModal from "../Modal/RoundOverModal/RoundOverModal";
 
 const GameCell = ({ cellItem, index }) => {
-  const { updateBoard, game } = useContext(GameContext);
+  const { updateBoard, game, roundComplete } = useContext(GameContext);
+  const { handleModal } = useContext(ModalContext);
 
   const cellClickHandler = () => {
     updateBoard(index);
   };
+
   // Used because it wasn't updating in real time
   useEffect(() => {
-    const result = checkForWinner(game.board);
-  }, [game.board]);
+    const winner = checkForWinner(game.board);
+
+    if (winner) {
+      const winnerMessage = roundComplete(winner);
+      handleModal(<RoundOverModal winnerMessage={winnerMessage} />);
+    }
+  }, [game.board[index]]);
 
   if (cellItem === "x") {
     return (

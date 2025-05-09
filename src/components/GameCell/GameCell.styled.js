@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CellStyle = styled.button`
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.cream};
   color: ${(props) => props.theme.colors.primary};
   font-size: 3rem;
   height: 10rem;

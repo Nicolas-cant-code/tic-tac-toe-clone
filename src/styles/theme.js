@@ -2,7 +2,7 @@ export const lightTheme = {
   colors: {
     primary: "#F6F1EB",
     secondary: "#202124",
-    tertiary: "#3D3D3D",
+    tertiary: "#706969",
 
     default: "#BCC1C7",
 
@@ -11,8 +11,10 @@ export const lightTheme = {
     gray: "#828282",
     white: "#FFFFf0",
     black: "#00000099",
-    purple: "#8437f9",
+    purple: "#8f7dab",
     yellow: "#f9c811",
+    cream: "#c2b080",
+    green: "#9bb57f",
 
     text: "#202124",
   },
@@ -46,8 +48,10 @@ export const darkTheme = {
     gray: "#828282",
     white: "#FFFFf0",
     black: "#00000099",
-    purple: "#8437f9",
+    purple: "#aa87e0",
     yellow: "#f9c811",
+    cream: "#ede8b4",
+    green: "#ccf79e",
 
     text: "#F6F1EB",
   },
