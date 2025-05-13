@@ -1,6 +1,6 @@
 import React from "react";
 import { PlayerContainer, AvatarWrapper } from "./Player.styled";
-import Avatar, { genConfig } from "react-nice-avatar";
+import Avatar from "react-nice-avatar";
 import { useTheme } from "styled-components";
 
 const Player = ({ player, isPlayerActive }) => {
