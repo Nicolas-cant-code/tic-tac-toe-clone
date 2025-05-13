@@ -40,6 +40,25 @@ export function GameContextProvider(props) {
     });
   };
 
+  const restartGame = () => {
+    setGame({
+      board: [null, null, null, null, null, null, null, null, null],
+      player1: {
+        choice: "x",
+        name: "Player 1",
+        score: 0,
+        avatarConfig: genConfig(),
+      },
+      player2: {
+        choice: "o",
+        name: "Player 2",
+        score: 0,
+        avatarConfig: genConfig(),
+      },
+      turn: "x",
+    });
+  };
+
   const toggleChoice = (choice) => (choice === "x" ? "o" : "x");
 
   const switchTurn = () => {
@@ -104,6 +123,7 @@ export function GameContextProvider(props) {
         resetBoard,
         resetScores,
         roundComplete,
+        restartGame,
       }}
     >
       {props.children}

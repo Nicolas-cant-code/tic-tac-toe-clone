@@ -8,13 +8,16 @@ import IconO from "../../assets/svgs/o-symbol.svg?react";
 import IconOOutline from "../../assets/svgs/o-symbol-outline.svg?react";
 import { ModalContext } from "../../context/ModalContext";
 import RoundOverModal from "../Modal/RoundOverModal/RoundOverModal";
+import { SfxContext } from "../../context/SoundEffectsContext";
 
 const GameCell = ({ cellItem, index }) => {
   const { updateBoard, game, roundComplete } = useContext(GameContext);
   const { handleModal } = useContext(ModalContext);
+  const { hoverSfx, winnerSfx, completedSfx } = useContext(SfxContext);
 
   const cellClickHandler = () => {
     updateBoard(index);
+    hoverSfx();
   };
 
   // Used because it wasn't updating in real time
@@ -23,6 +26,13 @@ const GameCell = ({ cellItem, index }) => {
 
     if (winner) {
       const winnerMessage = roundComplete(winner);
+
+      if (winner !== "draw") {
+        winnerSfx();
+      } else {
+        completedSfx();
+      }
+
       handleModal(<RoundOverModal winnerMessage={winnerMessage} />);
     }
   }, [game.board[index]]);
