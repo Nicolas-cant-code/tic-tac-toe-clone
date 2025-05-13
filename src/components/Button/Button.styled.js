@@ -17,4 +17,9 @@ export const ButtonWrapper = styled.button`
     box-shadow: 0px 0px 10px ${(props) => props.theme.colors.tertiary};
     transition: 0.15s;
   }
+
+  ${(props) => props.theme.media.mobile} {
+    min-width: 150px;
+    padding: 10px 15px;
+  }
 `;

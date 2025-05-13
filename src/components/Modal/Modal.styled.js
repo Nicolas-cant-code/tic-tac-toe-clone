@@ -23,6 +23,11 @@ export const ModalContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: ${(props) => props.theme.colors.secondary};
+
+  ${(props) => props.theme.media.mobile} {
+    min-width: 200px;
+    padding: 14px 7px;
+  }
 `;
 
 export const ModalHeader = styled.div`

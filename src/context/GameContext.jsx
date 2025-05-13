@@ -1,4 +1,5 @@
 import { useState, createContext } from "react";
+import { genConfig } from "react-nice-avatar";
 
 export const GameContext = createContext({});
 
@@ -9,11 +10,13 @@ export function GameContextProvider(props) {
       choice: "x",
       name: "Player 1",
       score: 0,
+      avatarConfig: genConfig(),
     },
     player2: {
       choice: "o",
       name: "Player 2",
       score: 0,
+      avatarConfig: genConfig(),
     },
     turn: "x",
   });

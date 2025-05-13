@@ -10,12 +10,18 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.colors.primary};
   padding: 0 2rem;
   text-align: center;
+
+  ${(props) => props.theme.media.mobile} {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Title = styled.h1`
   color: ${(props) =>
     props.color ? props.theme.colors[props.color] : props.theme.colors.text};
-  font-size: 3rem;
+  font-size: 4rem;
   font-family: "Pacifico", cursive;
   background-color: transparent;
 `;

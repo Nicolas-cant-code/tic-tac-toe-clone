@@ -12,6 +12,13 @@ export const CellStyle = styled.button`
   transition: background-color 0.3s ease, transform 0.3s ease;
   padding: 2rem;
 
+  ${(props) => props.theme.media.mobile} {
+    height: 7.5rem;
+    width: 7.5rem;
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
   .outlineIcon {
     display: none;
     fill: ${(props) => props.theme.colors.secondary};
