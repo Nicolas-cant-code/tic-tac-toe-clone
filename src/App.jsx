@@ -8,13 +8,14 @@ import MusicPlayer from "./components/MusicPlayer/MusicPlayer";
 
 function App() {
   const { theme } = useContext(ThemeContext);
+  const isHomeScreen = window.location.pathname === "/" ? true : false;
 
   const mode = theme === "light" ? lightTheme : darkTheme;
   return (
     <ThemeProvider theme={mode}>
       <GlobalStyles />
       <Router />
-      <MusicPlayer />
+      <MusicPlayer isHomeScreen={isHomeScreen} />
     </ThemeProvider>
   );
 }

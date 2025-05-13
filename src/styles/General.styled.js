@@ -24,6 +24,13 @@ export const Title = styled.h1`
   font-size: 4rem;
   font-family: "Pacifico", cursive;
   background-color: transparent;
+
+  ${(props) =>
+    props.small &&
+    `
+    font-size: 1.25rem;
+    font-weight: 100;
+  `}
 `;
 
 export const SubTitle = styled.h2`

@@ -10,13 +10,13 @@ export const CellStyle = styled.button`
   border-radius: 1.5rem;
   box-shadow: 5px 10px ${(props) => props.theme.colors.tertiary};
   transition: background-color 0.3s ease, transform 0.3s ease;
-  padding: 2rem;
+  padding: 1rem;
 
   ${(props) => props.theme.media.mobile} {
     height: 7.5rem;
     width: 7.5rem;
     font-size: 2rem;
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   .outlineIcon {
