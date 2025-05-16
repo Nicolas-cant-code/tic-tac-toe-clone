@@ -9,7 +9,6 @@ import playList from "../../utils/MusicUtils/playlist";
 import { randomIndex } from "../../utils/MusicUtils";
 import { SubTitle, Title } from "../../styles/General.styled";
 import { SfxContext } from "../../context/SoundEffectsContext";
-import { useLocation } from "react-router-dom";
 
 const MusicPlayer = ({ isHomeScreen }) => {
   const { hoverSfx } = useContext(SfxContext);
@@ -27,14 +26,29 @@ const MusicPlayer = ({ isHomeScreen }) => {
     if (isPlaying) {
       const promise = playerRef.current?.play();
       setPlayPromise(promise);
+
       if (playerRef.current?.volume) {
-        playerRef.current.volume = 0.5;
+        playerRef.current.volume = 0.02;
       }
+
+      const audio = playerRef.current;
+      if (!audio) return;
+      const handleEnded = () => {
+        setCurrentSong(randomIndex(playList));
+        setIsPlaying(true);
+        setIsPaused(false);
+      };
+
+      audio.addEventListener("ended", handleEnded);
+      return () => {
+        audio.removeEventListener("ended", handleEnded);
+      };
+
       return;
     }
 
     playerRef.current.pause();
-  }, [isPlaying]);
+  }, [isPlaying, currentSong]);
 
   const shuffleHandler = async () => {
     await playPromise.then(() => {
