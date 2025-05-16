@@ -22,17 +22,28 @@ export const MusicPlayerWrapper = styled.div`
           justify-content: end;
           margin-left: -1.75rem;
         }
-          @media (max-width: 521px) and (min-height: 440px) and (max-height: 625px) {
-      top: 52px;
+        @media (min-width: 521px) and (min-height: 440px) and (max-height: 625px) {
+          top: 52px;
+          justify-content: end;
+          margin-left: -1.25rem;
+        }
+        @media (min-width: 520px) and (min-height: 625px) {
+          top: 52px;
           justify-content: end;
           margin-left: -1.75rem;
-    }
-          @media (min-width: 521px) and (max-height: 440px) {
+        }
+        @media (min-width: 520px) and (max-height: 625px) {
+          top: 52px;
+          justify-content: end;
+          margin-left: -1.75rem;
+        }
+
+        @media (max-width: 520px) and (max-height: 625px) {
           display: none;
-    }
-          @media (max-width: 520px) and (max-height: 625px) {
+        }
+        @media (max-width: 519px) and (max-height: 440px) {
           display: none;
-    }
+        }
       `;
     }
   }}
