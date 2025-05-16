@@ -28,7 +28,7 @@ const MusicPlayer = ({ isHomeScreen }) => {
       setPlayPromise(promise);
 
       if (playerRef.current?.volume) {
-        playerRef.current.volume = 0.02;
+        playerRef.current.volume = 0.2;
       }
 
       const audio = playerRef.current;
