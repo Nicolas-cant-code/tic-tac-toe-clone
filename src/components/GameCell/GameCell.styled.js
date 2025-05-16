@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const CellStyle = styled.button`
-  background-color: ${(props) => props.theme.colors.cream};
+  background-color: ${(props) =>
+    props.isWinningCell ? props.theme.colors.yellow : props.theme.colors.cream};
   color: ${(props) => props.theme.colors.primary};
   font-size: 3rem;
   height: 10rem;

@@ -19,6 +19,7 @@ export function GameContextProvider(props) {
       avatarConfig: genConfig(),
     },
     turn: "x",
+    winningCombo: [],
   });
 
   const updateBoard = (index) => {
@@ -37,6 +38,7 @@ export function GameContextProvider(props) {
       ...game,
       board: [null, null, null, null, null, null, null, null, null],
       turn: "x",
+      winningCombo: [],
     });
   };
 
@@ -76,43 +78,37 @@ export function GameContextProvider(props) {
     }));
   };
 
-  const updateScore = (winner) => {
+  const updateScore = (winner, combo) => {
     if (winner === "draw") {
       setGame((prevGame) => ({
         ...prevGame,
-        player1: { ...game.player1, score: prevGame.player1.score + 0.5 },
-        player2: { ...game.player2, score: prevGame.player2.score + 0.5 },
+        player1: { ...prevGame.player1, score: prevGame.player1.score + 0.5 },
+        player2: { ...prevGame.player2, score: prevGame.player2.score + 0.5 },
+        winningCombo: [0, 1, 2, 3, 4, 5, 6, 7, 8],
       }));
-    } else {
+    } else if (winner === "player1" || winner === "player2") {
       setGame((prevGame) => ({
         ...prevGame,
-        [winner]: { ...game[winner], score: prevGame[winner].score + 1 },
+        [winner]: {
+          ...prevGame[winner],
+          score: prevGame[winner].score + 1,
+        },
+        winningCombo: combo,
       }));
     }
   };
 
-  const roundComplete = (winner) => {
-    if (winner === game.player1.choice && winner !== "draw") {
-      updateScore("player1");
-      switchTurn();
+  const roundComplete = (winner, combo) => {
+    if (game.turn === game.player2.choice && winner !== "draw") {
+      updateScore("player1", combo);
       return game.player1.name + " Wins!";
-    } else if (winner === game.player2.choice && winner !== "draw") {
-      updateScore("player2");
-      switchTurn();
+    } else if (game.turn === game.player1.choice && winner !== "draw") {
+      updateScore("player2", combo);
       return game.player2.name + " Wins!";
     } else if (winner === "draw") {
       updateScore("draw");
-      switchTurn();
       return "It's a draw!";
     }
-  };
-
-  const resetScores = () => {
-    setGame({
-      ...game,
-      player1: { ...game.player1, score: 0 },
-      player2: { ...game.player2, score: 0 },
-    });
   };
 
   return (
@@ -121,9 +117,9 @@ export function GameContextProvider(props) {
         game,
         updateBoard,
         resetBoard,
-        resetScores,
         roundComplete,
         restartGame,
+        switchTurn,
       }}
     >
       {props.children}

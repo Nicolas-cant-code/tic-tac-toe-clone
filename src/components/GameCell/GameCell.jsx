@@ -10,7 +10,7 @@ import { ModalContext } from "../../context/ModalContext";
 import RoundOverModal from "../Modal/RoundOverModal/RoundOverModal";
 import { SfxContext } from "../../context/SoundEffectsContext";
 
-const GameCell = ({ cellItem, index }) => {
+const GameCell = ({ cellItem, index, isWinningCell }) => {
   const { updateBoard, game, roundComplete } = useContext(GameContext);
   const { handleModal } = useContext(ModalContext);
   const { hoverSfx, winnerSfx, completedSfx } = useContext(SfxContext);
@@ -22,30 +22,30 @@ const GameCell = ({ cellItem, index }) => {
 
   // Used because it wasn't updating in real time
   useEffect(() => {
-    const winner = checkForWinner(game.board);
+    const result = checkForWinner(game.board);
+    if (result) {
+      const winnerMessage = roundComplete(result.winner, result.combo);
 
-    if (winner) {
-      const winnerMessage = roundComplete(winner);
-
-      if (winner !== "draw") {
+      if (result.winner !== "draw") {
         winnerSfx();
       } else {
         completedSfx();
       }
-
-      handleModal(<RoundOverModal winnerMessage={winnerMessage} />);
+      setTimeout(() => {
+        handleModal(<RoundOverModal winnerMessage={winnerMessage} />);
+      }, 2000);
     }
   }, [game.board[index]]);
 
   if (cellItem === "x") {
     return (
-      <CellStyle>
+      <CellStyle isWinningCell={isWinningCell ?? false}>
         <IconX />
       </CellStyle>
     );
   } else if (cellItem === "o") {
     return (
-      <CellStyle>
+      <CellStyle isWinningCell={isWinningCell ?? false}>
         <IconO className="oIcon" />
       </CellStyle>
     );

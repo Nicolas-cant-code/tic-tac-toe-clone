@@ -8,16 +8,13 @@ import { ModalContextProvider } from "./context/ModalContext";
 
 const Router = () => {
   return (
-    <BrowserRouter>
-      <ModalContextProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/details" element={<Details />} />
-          <Route path="/game-on" element={<Game />} />
-        </Routes>
-      </ModalContextProvider>
-    </BrowserRouter>
+    <ModalContextProvider>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/game-on" element={<Game />} />
+      </Routes>
+    </ModalContextProvider>
   );
 };
 

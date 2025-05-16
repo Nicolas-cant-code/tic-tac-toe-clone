@@ -6,14 +6,36 @@ import { FaShuffle } from "react-icons/fa6";
 export const MusicPlayerWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: ${({ isHomeScreen }) => (isHomeScreen ? "center" : "end")};
+  justify-content: center;
   height: 10vh;
   width: 100vw;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   margin-bottom: 3rem;
-  margin-left: ${({ isHomeScreen }) => (isHomeScreen ? "0" : "-2.5rem")};
   color: ${({ theme }) => theme.colors.text};
+
+  ${({ isHomeScreen }) => {
+    if (!isHomeScreen) {
+      return `
+        @media (min-width: 1001px) and (max-height: 830px) {
+          top: 52px;
+          justify-content: end;
+          margin-left: -1.75rem;
+        }
+          @media (max-width: 521px) and (min-height: 440px) and (max-height: 625px) {
+      top: 52px;
+          justify-content: end;
+          margin-left: -1.75rem;
+    }
+          @media (min-width: 521px) and (max-height: 440px) {
+          display: none;
+    }
+          @media (max-width: 520px) and (max-height: 625px) {
+          display: none;
+    }
+      `;
+    }
+  }}
 `;
 
 export const PlayIcon = styled(FaPlay)`

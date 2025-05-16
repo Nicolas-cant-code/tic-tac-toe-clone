@@ -9,6 +9,7 @@ import playList from "../../utils/MusicUtils/playlist";
 import { randomIndex } from "../../utils/MusicUtils";
 import { SubTitle, Title } from "../../styles/General.styled";
 import { SfxContext } from "../../context/SoundEffectsContext";
+import { useLocation } from "react-router-dom";
 
 const MusicPlayer = ({ isHomeScreen }) => {
   const { hoverSfx } = useContext(SfxContext);
@@ -48,14 +49,16 @@ const MusicPlayer = ({ isHomeScreen }) => {
   return (
     <MusicPlayerWrapper isHomeScreen={isHomeScreen}>
       {isPlaying ? (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", maxWidth: "2000px" }}>
           <SubTitle>Now Playing</SubTitle>
           <a
             href={playList[currentSong]}
             target="_blank"
             style={{ textDecoration: "none", cursor: "pointer" }}
           >
-            <Title small>{songName}</Title>
+            <Title small style={{ flexWrap: "wrap" }}>
+              {songName}
+            </Title>
           </a>
           <PauseIcon
             onClick={() => {
@@ -63,20 +66,16 @@ const MusicPlayer = ({ isHomeScreen }) => {
               setIsPaused(true);
               hoverSfx();
             }}
-          >
-            Pause
-          </PauseIcon>
+          ></PauseIcon>
           <ShuffleIcon
             onClick={() => {
               shuffleHandler();
               hoverSfx();
             }}
-          >
-            Shuffle
-          </ShuffleIcon>
+          ></ShuffleIcon>
         </div>
       ) : (
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", maxWidth: "200px" }}>
           {isPaused && <SubTitle>Paused</SubTitle>}
           {!isPaused && <SubTitle>Click to Play</SubTitle>}
           <a
@@ -84,24 +83,22 @@ const MusicPlayer = ({ isHomeScreen }) => {
             target="_blank"
             style={{ textDecoration: "none", cursor: "pointer" }}
           >
-            <Title small>{songName}</Title>
+            <Title small style={{ flexWrap: "wrap" }}>
+              {songName}
+            </Title>
           </a>
           <PlayIcon
             onClick={() => {
               setIsPlaying(true);
               hoverSfx();
             }}
-          >
-            Play
-          </PlayIcon>
+          ></PlayIcon>
           <ShuffleIcon
             onClick={() => {
               shuffleHandler();
               hoverSfx();
             }}
-          >
-            Shuffle
-          </ShuffleIcon>
+          ></ShuffleIcon>
         </div>
       )}
 

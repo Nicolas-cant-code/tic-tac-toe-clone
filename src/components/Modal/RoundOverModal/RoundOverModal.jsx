@@ -8,7 +8,7 @@ import { SfxContext } from "../../../context/SoundEffectsContext";
 import { useNavigate } from "react-router-dom";
 
 const RoundOverModal = ({ winnerMessage }) => {
-  const { resetBoard, game, restartGame } = useContext(GameContext);
+  const { resetBoard, game, restartGame, switchTurn } = useContext(GameContext);
   const { handleModal } = useContext(ModalContext);
   const { hoverSfx, clickSfx } = useContext(SfxContext);
 
@@ -21,10 +21,10 @@ const RoundOverModal = ({ winnerMessage }) => {
       </ModalHeader>
       <ModalBody>
         <SubTitle color="primary">
-          {game.player1.name} with {game.player2.choice}: {game.player1.score}
+          {game.player1.name} with {game.player1.choice}: {game.player1.score}
         </SubTitle>
         <SubTitle color="primary">
-          {game.player2.name} with {game.player1.choice}: {game.player2.score}
+          {game.player2.name} with {game.player2.choice}: {game.player2.score}
         </SubTitle>
         <SubTitle color="primary">Choices will be switched now</SubTitle>
       </ModalBody>
@@ -35,6 +35,7 @@ const RoundOverModal = ({ winnerMessage }) => {
           onClick={() => {
             handleModal();
             resetBoard();
+            switchTurn();
             clickSfx();
           }}
           onMouseEnter={() => hoverSfx()}
